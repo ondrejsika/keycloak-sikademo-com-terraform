@@ -17,6 +17,7 @@ resource "keycloak_oidc_identity_provider" "myrealm_email_sso" {
   client_id         = "client"
   client_secret     = "secret"
   sync_mode         = "FORCE"
+  trust_email       = true
   extra_config = {
     "clientAuthMethod" = "client_secret_post"
   }
