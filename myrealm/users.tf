@@ -29,4 +29,5 @@ output "initial_passwords" {
   value = {
     ondrej = module.ondrej_user.initial_password
   }
+  sensitive = true
 }
