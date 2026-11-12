@@ -22,3 +22,19 @@ resource "keycloak_oidc_identity_provider" "foxconn_myrealm" {
     "clientAuthMethod" = "client_secret_post"
   }
 }
+
+# Map "groups" claim from myrealm to "groups" user attribute in foxconn
+resource "keycloak_attribute_importer_identity_provider_mapper" "foxconn_myrealm_groups" {
+  realm                   = keycloak_realm.foxconn.id
+  identity_provider_alias = keycloak_oidc_identity_provider.foxconn_myrealm.alias
+  name                    = "groups"
+  claim_name              = "groups"
+  user_attribute          = "groups"
+  extra_config = {
+    syncMode = "FORCE"
+  }
+
+  depends_on = [
+    keycloak_realm_user_profile.foxconn,
+  ]
+}

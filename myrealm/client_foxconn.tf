@@ -14,3 +14,13 @@ resource "keycloak_openid_client" "foxconn" {
     "*",
   ]
 }
+
+resource "keycloak_openid_client_default_scopes" "foxconn" {
+  realm_id  = keycloak_realm.myrealm.id
+  client_id = keycloak_openid_client.foxconn.id
+  default_scopes = [
+    "profile",
+    "email",
+    keycloak_openid_client_scope.myrealm_groups.name,
+  ]
+}
