@@ -5,3 +5,5 @@ terraform {
     }
   }
 }
+
+variable "keycloak_url" {}

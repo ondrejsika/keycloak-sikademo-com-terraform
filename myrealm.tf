@@ -1,5 +1,6 @@
 module "myrealm" {
-  source = "./myrealm"
+  source       = "./myrealm"
+  keycloak_url = var.keycloak_url
 }
 
 output "myrealm_initial_passwords" {
